@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Yohanne Rei's Baptismal Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #f0f4f8;
+            --accent-color: #ffb7b2;
+            --text-color: #2c3e50;
+            --white: #ffffff;
+            --soft-pink: #ffe6eb;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #e3eeff 0%, #f3e7e8 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* ENVELOPE INTRO SCREEN */
+        #envelope-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(240, 244, 248, 0.98);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .envelope-wrapper {
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: bounceEnvelope 2s infinite ease-in-out;
+            border: 2px dashed var(--primary-color);
+            position: relative;
+        }
+        @keyframes bounceEnvelope {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .envelope-wrapper h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        .seal-btn {
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 183, 178, 0.4);
+            transition: transform 0.2s, background 0.2s;
+            margin-top: 15px;
+        }
+        .seal-btn:hover {
+            transform: scale(1.05);
+            background: #ff9994;
+        }
+
+        /* MAIN INVITATION CONTAINER */
+        .invitation-container {
+            width: 100%;
+            max-width: 480px;
+            background: var(--white);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border-radius: 25px;
+            margin: 20px;
+            display: none;
+            animation: fadeIn 1s ease forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .header {
+            text-align: center;
+            padding: 35px 20px;
+            background: linear-gradient(135deg, #e3eeff 0%, #f3e7e8 100%);
+        }
+        .theme-badge {
+            display: inline-block;
+            background: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        /* CAROUSEL BANNER */
+        .carousel-banner {
+            width: 100%;
+            height: 240px;
+            background: #ffe6eb;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .carousel-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: pulseZoom 10s infinite alternate;
+        }
+        @keyframes pulseZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .content {
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        /* COUNTDOWN SECTION */
+        .countdown-box {
+            background: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #ffd1dc;
+            box-shadow: 0 4px 15px rgba(255, 183, 178, 0.2);
+        }
+        .countdown-box h3 {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .time-card {
+            background: #fdf2f4;
+            border: 1px solid #ffb7b2;
+            padding: 8px 12px;
+            border-radius: 10px;
+            min-width: 60px;
+            text-align: center;
+        }
+        .time-card span {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .time-card small {
+            font-size: 0.7rem;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* DETAILS BOXES */
+        .details-box {
+            background: #fafbfc;
+            border: 1px solid #eaeaea;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .details-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .details-box p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 6px;
+        }
+
+        /* ATTIRE GUIDE */
+        .attire-section {
+            background: #fff9fa;
+            border: 1px dashed var(--accent-color);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .attire-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 2rem;
+            margin-top: 10px;
+        }
+
+        /* GODPARENTS SECTION */
+        .godparents-section {
+            background: #f7f9fc;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            text-align: left;
+            border: 1px solid #e1e8ed;
+        }
+        .godparents-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        .gp-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+        .gp-col h4 {
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 3px;
+        }
+        .gp-col ol {
+            padding-left: 18px;
+            color: #555;
+        }
+
+        /* HEARTFELT MESSAGES */
+        .message-box {
+            background: linear-gradient(135deg, #fce4ec 0%, #e3f2fd 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 15px;
+            text-align: center;
+            font-style: italic;
+            color: #37474f;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            border: 1px solid #f8bbd0;
+        }
+        .message-box strong {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+        }
+
+        /* GIFT GUIDE */
+        .gift-guide {
+            background: #fafbfc;
+            border: 1px solid #eaeaea;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            text-align: left;
+        }
+        .gift-table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+        .gift-table th, .gift-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        .gift-table th {
+            color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* MUSIC PLAYER */
+        .music-player {
+            margin: 20px 0 10px 0;
+            padding: 10px;
+            background: #fff5f5;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #d63384;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- INTERACTIVE ENVELOPE INTRO -->
+    <div id="envelope-screen">
+        <div class="envelope-wrapper">
+            <div style="font-size: 3rem; margin-bottom: 10px;">💌</div>
+            <h2>You Are Invited!</h2>
+            <p style="color: #666; font-size: 0.95rem;">Celebration of Holy Baptism of Baby Yohanne Rei</p>
+            <button class="seal-btn" onclick="openInvitation()">✨ Click the Seal to Open ✨</button>
+        </div>
+    </div>
+
+    <!-- MAIN INVITATION -->
+    <div class="invitation-container" id="main-invitation">
+        <div class="header">
+            <span class="theme-badge">✨ MAGIC CAROUSEL THEME ✨</span>
+            <h1>Yohanne Rei</h1>
+            <p class="subtitle">Celebration of Holy Baptism</p>
+        </div>
+
+        <!-- Carousel Image Banner matching exact screenshot reference -->
+        <div class="carousel-banner">
+            <img src="https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?auto=format&fit=crop&w=800&q=80" alt="Magic Carousel Theme">
+        </div>
+
+        <div class="content">
+            <p>You are warmly invited to celebrate with us on the christening of our beloved child.</p>
+
+            <!-- COUNTDOWN TIMER -->
+            <div class="countdown-box">
+                <h3>⏳ Countdown to Baby Yohanne's Baptism</h3>
+                <div class="countdown-grid">
+                    <div class="time-card"><span id="days">00</span><small>Days</small></div>
+                    <div class="time-card"><span id="hours">00</span><small>Hours</small></div>
+                    <div class="time-card"><span id="mins">00</span><small>Mins</small></div>
+                    <div class="time-card"><span id="secs">00</span><small>Secs</small></div>
+                </div>
+            </div>
+
+            <!-- BACKGROUND MUSIC -->
+            <div class="music-player">
+                <p>🎵 Background Music</p>
+                <audio id="bg-music" controls loop style="width: 100%; margin-top: 5px;">
+                    <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+            <!-- CHURCH CEREMONY -->
+            <div class="details-box">
+                <h3>⛪ Church Ceremony</h3>
+                <p><strong>St. John Neumann Parish</strong></p>
+                <p>Sicayab, Dipolog City</p>
+                <p>⏰ Time: 5:30 AM</p>
+            </div>
+
+            <!-- RECEPTION VENUE -->
+            <div class="details-box">
+                <h3>🏡 Reception Venue</h3>
+                <p><strong>Barnayja's Residence</strong></p>
+                <p>Blk 4 Lot 2, Rufina Heights, Dicayas, Dipolog City</p>
+                <p>🎉 To follow immediately after the ceremony.</p>
+            </div>
+
+            <!-- ATTIRE GUIDE -->
+            <div class="attire-section">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--primary-color);">👗 Attire Guide</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Soft pastel & elegant colors</p>
+                <div class="attire-icons">
+                    <span>👗</span>
+                    <span>👔</span>
+                    <span>👖</span>
+                </div>
+                <p style="font-size: 0.85rem; color: #555; margin-top: 8px;">Ladies: Dress or Formal Wear<br>Gents: Polo, T-shirt or Pants</p>
+            </div>
+
+            <!-- GODPARENTS LIST -->
+            <div class="godparents-section">
+                <h3>✨ Our Dear Godparents ✨</h3>
+                <div class="gp-list">
+                    <div class="gp-col">
+                        <h4>💙 Ninongs</h4>
+                        <ol>
+                            <li>Michael Dave Jaugin</li>
+                            <li>Brian Dave Bayron</li>
+                            <li>Merlin John Gicoso</li>
+                            <li>McCartey Vidal</li>
+                            <li>JV Gallemit</li>
+                            <li>Fred John Caidic</li>
+                            <li>Jie Duhanglungsod</li>
+                            <li>Russel Dalaguan</li>
+                            <li>Joffe Baguinat</li>
+                            <li>Jacob Delegencia</li>
+                        </ol>
+                    </div>
+                    <div class="gp-col">
+                        <h4>💗 Ninangs</h4>
+                        <ol>
+                            <li>Jovy Lariba</li>
+                            <li>Elisa May Abrea</li>
+                            <li>Reahlyn Labadlabad</li>
+                            <li>Andrea Ompoy</li>
+                            <li>Adela Mongcopa</li>
+                            <li>Ruby Gail Romualdo</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SWEET MESSAGE 1 -->
+            <div class="message-box">
+                "Thank you for accepting the special role of becoming Yohanne Rei's godparents. Your presence in his life will be a blessing, and we hope you'll guide him with love, faith, wisdom, and prayers as he grows. We are truly grateful to have you as part of his journey."
+                <strong>With love and gratitude,<br>Yohanne Rei & Family 🧸💙</strong>
+            </div>
+
+            <!-- SWEET MESSAGE 2 -->
+            <div class="message-box" style="background: linear-gradient(135deg, #e1f5fe 100%, #fff9c4 0%);">
+                "Thank you for being part of Baby Yohanne Rei's special day! We are so blessed to have you as his godparents. May you always guide him with love, patience, faith, and prayers as he grows. We are excited to have you be part of his journey!"
+                <strong>With love,<br>Baby Yohanne Rei & Family 🧸💙</strong>
+            </div>
+
+            <!-- GIFT GUIDE -->
+            <div class="gift-guide">
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--primary-color); margin-bottom: 8px;">🎁 Baby Yohanne Rei's Gift Guide</h3>
+                <p style="font-size: 0.9rem; color: #555;">Your presence is already the greatest gift. But if you wish to give something for our little one, here are some ideas!</p>
+                <table class="gift-table">
+                    <tr>
+                        <th>Logo</th>
+                        <th>Gift Option</th>
+                    </tr>
+                    <tr><td>🍼</td><td>Milk (Bonna)</td></tr>
+                    <tr><td>🧷</td><td>Diapers</td></tr>
+                    <tr><td>🧴</td><td>Baby toiletries</td></tr>
+                    <tr><td>👕</td><td>Baby clothes</td></tr>
+                    <tr><td>🧸</td><td>Stuffed toys</td></tr>
+                    <tr><td>🛏️</td><td>Baby blankets</td></tr>
+                    <tr><td>🛒</td><td>Baby essentials</td></tr>
+                    <tr><td>✉️</td><td>Monetary Gift</td></tr>
+                </table>
+            </div>
+
+            <!-- FOOTER -->
+            <div style="margin-top: 25px; font-size: 0.9rem; color: #777;">
+                <p>Thank you for the love! See you there! 🎈✨</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openInvitation() {
+            const envelope = document.getElementById('envelope-screen');
+            const main = document.getElementById('main-invitation');
+            const music = document.getElementById('bg-music');
+
+            envelope.style.opacity = '0';
+            setTimeout(() => {
+                envelope.style.display = 'none';
+                main.style.display = 'block';
+                music.play().catch(e => console.log("Audio autoplay restricted"));
+            }, 800);
+        }
+
+        const baptismDate = new Date("March 30, 2026 05:30:00").getTime();
+        const countdownTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = baptismDate - now;
+
+            if (distance < 0) {
+                document.querySelectorAll(".countdown-box").forEach(el => el.innerHTML = "Today is the joyful day of Baby Yohanne's Baptism! 🎉");
+                clearInterval(countdownTimer);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("mins").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("secs").innerText = String(seconds).padStart(2, '0');
+        }, 1000);
+    </script>
+</body>
+</html>
